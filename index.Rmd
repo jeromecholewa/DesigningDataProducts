@@ -1,0 +1,43 @@
+---
+title: "DP_Week2_My favorite Seoul restaurants"
+author: "Jerome Cholewa"
+date: "2/25/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(leaflet)
+```
+
+## My favourite restaurants
+
+Some are French , some Spanish. These are just 4 of them and how much I already spent in them!
+
+```{r pressure}
+
+restaurants <- data.frame(name = c("Cuisson 82", "La Planque", "L'Empreinte", "Spain Club"),
+                          type = c("French", "French", "French", "Spanish"),
+                          lat =  c(37.481553, 37.533312, 37.561558, 37.521861),
+                          lng = c(127.044662, 126.993544, 126.924425, 127.021888),
+                          money = c(180, 250, 450, 140),
+                          stringsAsFactors=FALSE)
+
+flagIcons <- icons(
+        iconUrl = ifelse(restaurants$type == "French", "https://drive.google.com/uc?export=view&id=0B7M7SSx2pXP-NXdlVUlETWMtRUk",
+                         "https://drive.google.com/uc?export=view&id=0B7M7SSx2pXP-VmR4YzRCZFNKdUU"),
+        iconWidth = 30*278/183, iconHeight = 30,
+        iconAnchorX = 60, iconAnchorY = -5)
+
+my_Seoul_restaurants <- restaurants %>% leaflet() %>%  addTiles() %>%
+        addCircles(weight = 1, radius = restaurants$money*5  ) 
+
+my_Seoul_restaurants <-  my_Seoul_restaurants  %>%
+        addMarkers(icon = flagIcons,
+                    clusterOptions = markerClusterOptions()) %>%
+        addMarkers(popup = ~name  , label = ~as.character(restaurants$money),
+                   clusterOptions = markerClusterOptions)
+
+my_Seoul_restaurants
+```
+
