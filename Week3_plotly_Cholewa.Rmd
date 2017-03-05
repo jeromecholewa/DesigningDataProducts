@@ -1,0 +1,32 @@
+---
+title: "Salaries by age and seniority with plot_ly"
+author: "Jerome Cholewa"
+date: "March 5th 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plotly)
+```
+
+## THE DATA SET
+This data set is a made-up set of salaries by department (not need to explain each name here), by age and by company seniority
+
+``` {r }
+SALARY2 <- data.frame(Name.Code = c("SAC1", "SAC2", "CAD2", "CAD5", "CAE2", "CAE3", "PAE1", "PAE2", "PAE6", "PAE8", "PAE10", "PAE12", "Assistant", "Lab" ),
+                      Dept = c("SAC","SAC", "CAD", "CAD", "CAE", "CAE", "PAE", "PAE", "PAE", "PAE", "PAE", "PAE", "Assistant", "LAB"),
+                     Salary.2016.MKRW = c(58.4, 63.1, 59.4, 64.2, 60.6, 41.3, 40.0, 43.2, 62.5, 55.7, 49.7, 53.8, 30.4, 71.5),
+                     Company.Seniority = c(3.1,  1.1, 22.0, 22.3,  2.9,  2.3,  4.6,  5.8,  8.9, 2.5,  1.6,  1.3,  3.2, 24.2) ,
+                     Age = c(39.9, 39.9, 46.2, 45.8, 39.0, 32.0, 29.4, 32.1, 41.5, 39.5, 39.9, 38.1, 32.0, 48.5))
+```
+
+## THE PLOT
+This 3D scatter plot made in plot_ly attempts to show that there is no clear correlation between seniority and salary, but there is a trend of salary going up with age.
+
+```{r plot, message = FALSE, warning = FALSE}
+plot_ly(data = SALARY2, x = ~Company.Seniority, y = ~Age, 
+        z = ~Salary.2016.MKRW,
+        type = "scatter3d", color = ~Dept,
+        text = ~Name.Code)
+```
