@@ -96,23 +96,4 @@ shinyServer(function(input, output) {
 
     })
 
-
-    # model1pred <- reactive({
-    #         mpgInput <- input$sliderMPG
-    #         predict(model1, newdata = data.frame(mpg = mpgInput))
-    # })
-    #
-    #         if(input$showModel1){
-    #                 abline(model1, col = "red", lwd = 2)
-    #         }
-    #         if(input$showModel2){
-    #                 model2lines <- predict(model2, newdata = data.frame(
-    #                         mpg = 10:35, mpgsp = ifelse(10:35 - 20 > 0,
-    #                                                     10:35 - 20, 0)
-    #                 ))
-    #                 lines(10:35, model2lines, col = "blue", lwd = 2)
-    #         }
-    # output$pred2 <- renderText({
-    #         model2pred()
-    # })
 })
