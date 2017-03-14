@@ -14,6 +14,12 @@ shinyUI(fluidPage(
     titlePanel("Display the distribution of estimation of the mean"),
     sidebarLayout(
         sidebarPanel(
+            h6("HELP:", br(), "- By setting the seed the sampling will be repeatable", br(),
+               "- Click on the 2nd tab to see the distribution of the", br(),
+               "estimated mean.", br(),
+               "- The number of bins for the histogram is a suggestion only.", br(),
+               "- R might choose a more suitable number of bins", br(),
+               "- The number of bins will affect only the first tab"),
             radioButtons("dist", "Distribution type:",
                          c("Normal" = "norm",
                            "Uniform" = "unif",
@@ -29,9 +35,9 @@ shinyUI(fluidPage(
             checkboxInput("showModel2", "Show/Hide sample mean (BLUE)",
                           value = TRUE),
             #submitButton("Submit"),
-            #submitButton("show", text = "Apply Changes!"),
-            actionButton("show", label  = "Re-run now!")
-
+            submitButton("Apply Changes!"),
+            #actionButton("show", label  = "Re-run now!"),
+            width = 4
         ),
 
         # Show a plot of the generated distribution

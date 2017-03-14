@@ -12,7 +12,7 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     output$distPlot <- renderPlot({
-        input$show
+        #input$show
         set.seed(input$seed )
         dist <- switch(input$dist, poisson = rpois,
                        norm = rnorm,
@@ -52,7 +52,7 @@ shinyServer(function(input, output) {
     })
 
     output$distPlotError <- renderPlot({
-        input$show
+        #input$show
         set.seed(input$seed )
         nosim <- input$nosims
         # simulate data for sample size 1 to 4 dat <- data.frame(
