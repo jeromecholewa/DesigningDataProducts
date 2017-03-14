@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Week4 Shiny App Standard_error</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Week4 Shiny App Standard_error">
+  <meta name="author" content="Jerome CHOLEWA">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/namsan.jpeg">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Week4 Shiny App Standard_error</h1>
+    <h2>14th March 2017</h2>
+    <p>Jerome CHOLEWA<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>SUMMARY</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This app shows, with 3 different distributions (the normal, the uniform and the Poisson), the distribution of the estimated mean. We want to demonstrate that, whatever the type of distribution, when sampling from the population, the mean of that sample (which is an estimate of the actual mean fo the population) follows a normal distribution centered at the mean and with a standard deviation that decreases with the square root of the standard deviation of the original distribution.</p>
+
+<p>For simplicity, the parameters of these distributions cannot be changed in this app. The following parameters are used:</p>
+
+<ul>
+<li>For the normal distribution: mean = 0 and Std = 1 (the default settings)</li>
+<li>For the uniform distribution: min = 0 and max = 1 (the default settings)</li>
+<li>For the Poisson distribution: lambda = 5</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>THE SIDE BAR</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The side bar lets the user choose several parameters:</p>
+
+<ol>
+<li>the seed (to have repeatable graphs)</li>
+<li>the type of distribution to be shown</li>
+<li>the sample size</li>
+<li>the number of bins for the histogram</li>
+<li>Whether the population mean and/or the sample mean will be displayed</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>THE 1st TAB</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This tab displays a density histogram of the chosen distribution. Typically it will look like the one below, with, optionally the ablines showing the theoretical mean and sample mean.</p>
+
+<pre><code class="r">distr &lt;- rpois(400, lambda = 5)
+hist(distr, xlab = &quot;Values&quot;, main = &quot;Poisson distribution lambda = 5&quot;, breaks = 12, freq = FALSE)
+abline(v = c(mean(distr), 5), col = c(&quot;blue&quot;, &quot;red&quot;), lwd = 2)
+</code></pre>
+
+<p><img src="assets/fig/plot-1.png" alt="plot of chunk plot"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>THE 2nd TAB</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The user can choose the number of simulations to be run. In each simulation, a sample will be taken from the population and its sample mean will be computed. All these sample means will be displayed in this histogram, showing that the distribution of sample mean follows a normal distribution centered at the mean of the original distribution with a standard deviation (called the standard error of the mean) that decreases with the square root of the sample size.
+<img src="assets/fig/plot_sample_mean-1.png" alt="plot of chunk plot_sample_mean"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='SUMMARY'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='THE SIDE BAR'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='THE 1st TAB'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='THE 2nd TAB'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
